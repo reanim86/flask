@@ -1,0 +1,26 @@
+version: '3.9'
+
+volumes:
+  pgdata:
+
+services:
+
+  postgredb:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: "ads"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "Tehn89tehn"
+    ports:
+      - "5431:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d ads"]
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    volumes:
+      - .:/docker-entrypoint-initdb.d
+      - pgdata:/var/lib/postgresql/data
+      - ./logs:/var/log
