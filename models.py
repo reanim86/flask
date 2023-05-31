@@ -15,6 +15,6 @@ class AdsTable(Base):
     head = Column(String, nullable=True, index=True)
     description = Column(String)
     creationdate = Column(DateTime, server_default=func.now())
-    user = Column(String, nullable=True, index=True)
+    username = Column(String, nullable=True, index=True)
 
 Base.metadata.create_all()

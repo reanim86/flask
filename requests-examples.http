@@ -1,19 +1,21 @@
 # примеры API-запросов
 
-@baseUrl = http://localhost:8000/api/v1
+@baseUrl = http://localhost:5000
 
-# создание продукта
-POST {{baseUrl}}/products/
+# создание объявления
+POST {{baseUrl}}/ads/
 Content-Type: application/json
 
 {
-  "title": "Морковь1"
+  "head": "Car",
+  "description": "BEST car in Rome",
+  "username": "Alex"
 }
 
 ###
 
-# получение продуктов
-GET {{baseUrl}}/products/
+# получение объявления
+GET {{baseUrl}}/ads/2
 Content-Type: application/json
 
 ###
