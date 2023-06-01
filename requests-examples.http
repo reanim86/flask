@@ -7,86 +7,64 @@ POST {{baseUrl}}/ads/
 Content-Type: application/json
 
 {
-  "head": "Car",
-  "description": "BEST car in Rome",
-  "username": "Alex"
+  "head": "Fish2",
+  "username": 2
 }
 
 ###
 
 # получение объявления
-GET {{baseUrl}}/ads/2
+GET {{baseUrl}}/ads/1
 Content-Type: application/json
 
 ###
 
-# обновление продукта
-PATCH {{baseUrl}}/products/2/
+# обновление объявления
+PATCH {{baseUrl}}/ads/1
 Content-Type: application/json
 
 {
-  "description": "Огурец домашний"
+  "head": "2"
 }
 
 ###
 
-# удаление продукта
-DELETE {{baseUrl}}/products/9/
+# удаление объявления
+DELETE {{baseUrl}}/ads/2
 Content-Type: application/json
 
 ###
 
-# поиск продуктов по названию и описанию
-GET {{baseUrl}}/products/?search=лук
-Content-Type: application/json
-
-###
-
-# создание склада
-POST {{baseUrl}}/stocks/
+# создание пользователя
+POST {{baseUrl}}/user/
 Content-Type: application/json
 
 {
-  "address": "город Анапа",
-  "positions": [
-    {
-      "product": 5,
-      "quantity": 5,
-      "price": 5.50
-    },
-    {
-      "product": 2,
-      "quantity": 1,
-      "price": 1
-    }
-  ]
+  "email": "anapa@1.ru",
+  "password": "1234"
   
 }
 
 ###
 
-# обновляем записи на складе
-PATCH {{baseUrl}}/stocks/12/
+# получение пользователя
+GET {{baseUrl}}/user/1/
+Content-Type: application/json
+
+###
+
+# изменение пользователя
+PATCH {{baseUrl}}/user/1/
 Content-Type: application/json
 
 {
-  "positions": [
-    {
-      "product": 2,
-      "quantity": 3,
-      "price": 3
-    }
-  ]
+  "email": "anapa@1.com",
+  "password": "12344321"
+  
 }
 
 ###
 
-# поиск складов, где есть определенный продукт
-GET {{baseUrl}}/stocks/?products=3
-Content-Type: application/json
-
-###
-
-# поиск складов, где есть определенный продукт
-GET {{baseUrl}}/stocks/?search=дом
+# удаление пользователя
+DELETE {{baseUrl}}/user/1
 Content-Type: application/json
