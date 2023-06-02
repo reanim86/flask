@@ -7,8 +7,10 @@ POST {{baseUrl}}/ads/
 Content-Type: application/json
 
 {
-  "head": "Fish2",
-  "username": 2
+  "head": "Motok",
+  "description": "Best cat",
+  "username": "sochi@1.ru",
+  "password": "12345678"
 }
 
 ###
@@ -24,7 +26,9 @@ PATCH {{baseUrl}}/ads/1
 Content-Type: application/json
 
 {
-  "head": "2"
+  "head": "3",
+  "username": "sochi@1.ru",
+  "password": "12345678"
 }
 
 ###
@@ -33,6 +37,11 @@ Content-Type: application/json
 DELETE {{baseUrl}}/ads/2
 Content-Type: application/json
 
+{
+  "username": "anapa@1.ru",
+  "password": "1234"
+}
+
 ###
 
 # создание пользователя
@@ -40,8 +49,8 @@ POST {{baseUrl}}/user/
 Content-Type: application/json
 
 {
-  "email": "anapa@1.ru",
-  "password": "1234"
+  "email": "anapa@ya.ru",
+  "password": "12345679"
   
 }
 
@@ -54,17 +63,11 @@ Content-Type: application/json
 ###
 
 # изменение пользователя
-PATCH {{baseUrl}}/user/1/
+PATCH {{baseUrl}}/user/5/
 Content-Type: application/json
 
 {
-  "email": "anapa@1.com",
+  "email": "sochi@ya.ru",
   "password": "12344321"
   
 }
-
-###
-
-# удаление пользователя
-DELETE {{baseUrl}}/user/1
-Content-Type: application/json
