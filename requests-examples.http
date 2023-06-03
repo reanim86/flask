@@ -9,8 +9,8 @@ Content-Type: application/json
 {
   "head": "Motok",
   "description": "Best cat",
-  "username": "sochi@1.ru",
-  "password": "12345678"
+  "username": "a5@ya.ru",
+  "password": "1234"
 }
 
 ###
@@ -49,7 +49,7 @@ POST {{baseUrl}}/user/
 Content-Type: application/json
 
 {
-  "email": "anapa@ya.ru",
+  "email": "sochi@ya.ru",
   "password": "12345679"
   
 }
@@ -63,11 +63,11 @@ Content-Type: application/json
 ###
 
 # изменение пользователя
-PATCH {{baseUrl}}/user/5/
+PATCH {{baseUrl}}/user/1/
 Content-Type: application/json
 
 {
-  "email": "sochi@ya.ru",
-  "password": "12344321"
+  "email": "a4@ya.ru",
+  "password": "123"
   
 }

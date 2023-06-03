@@ -160,11 +160,18 @@ class UserView(MethodView):
 
     def patch(self, user_id):
         json_data = validate_user(request.json, PatchUser)
+        password = json_data['password']
+        password = password.encode()
+        hashed_password = md5(password).hexdigest()
+        json_data['password'] = hashed_password
         with Session() as session:
             user = get_user(user_id, session)
             for field, value in json_data.items():
                 setattr(user, field, value)
-            session.commit()
+            try:
+                session.commit()
+            except IntegrityError as err:
+                raise HttpError(409, 'user already exists')
             return jsonify({
                 'id': user.id,
                 'email': user.email,
