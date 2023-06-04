@@ -9,26 +9,27 @@ Content-Type: application/json
 {
   "head": "Motok",
   "description": "Best cat",
-  "username": "a5@ya.ru",
-  "password": "1234"
+  "username": "sochi@ya.ru",
+  "password": "87654321"
 }
 
 ###
 
 # получение объявления
-GET {{baseUrl}}/ads/1
+GET {{baseUrl}}/ads/3
 Content-Type: application/json
 
 ###
 
 # обновление объявления
-PATCH {{baseUrl}}/ads/1
+PATCH {{baseUrl}}/ads/3
 Content-Type: application/json
 
 {
-  "head": "3",
-  "username": "sochi@1.ru",
-  "password": "12345678"
+  "head": "4",
+  "description": "4",
+  "username": "sochi@ya.ru",
+  "password": "87654321"
 }
 
 ###
@@ -38,8 +39,8 @@ DELETE {{baseUrl}}/ads/2
 Content-Type: application/json
 
 {
-  "username": "anapa@1.ru",
-  "password": "1234"
+  "username": "a4@ya.ru",
+  "password": "12345678"
 }
 
 ###
@@ -50,7 +51,7 @@ Content-Type: application/json
 
 {
   "email": "sochi@ya.ru",
-  "password": "12345679"
+  "password": "87654321"
   
 }
 
@@ -67,7 +68,7 @@ PATCH {{baseUrl}}/user/1/
 Content-Type: application/json
 
 {
-  "email": "a4@ya.ru",
-  "password": "123"
+  "email": "sochi3@ya.ru",
+  "password": "12345678"
   
 }

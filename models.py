@@ -9,12 +9,18 @@ Session = sessionmaker(bind=engine)
 Base = declarative_base(bind=engine)
 
 class User(Base):
+    """
+    Таблица пользователей
+    """
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True, autoincrement=True)
     email = Column(String(length=40), nullable=True, unique=True, index=True)
     password = Column(String, nullable=True)
     creationdate = Column(DateTime, server_default=func.now())
 class AdsTable(Base):
+    """
+    Таблица объявлений
+    """
     __tablename__ = 'adstable'
 
     id = Column(Integer, primary_key=True, autoincrement=True)

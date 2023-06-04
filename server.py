@@ -10,35 +10,57 @@ from sqlalchemy.exc import IntegrityError
 app = Flask('app')
 
 class HttpError(Exception):
+    """
+    Класс необходим для вывода ошибок пользователю
+    """
     def __init__(self, status_code, message):
         self.status_code = status_code
         self.message = message
 
 @app.errorhandler(HttpError)
 def error_handler(error: HttpError):
+    """
+    Функция вовзращает ошибку пользователю
+    """
     response = jsonify({'status': 'error', 'message': error.message})
     response.status_code = error.status_code
     return response
 
 def get_ads(ads_id: int, session: Session):
+    """
+    Получение объявления
+    :param ads_id: id объявления
+    """
     ads = session.get(AdsTable, ads_id)
     if ads is None:
         raise HttpError(404, message='ads is not found')
     return ads
 
 def get_user(user_id: int, session: Session):
+    """
+    Получение пользователя по id
+    :param user_id: id пользователя
+    """
     user = session.get(User, user_id)
     if user is None:
         raise HttpError(404, message='user is not found')
     return user
 
 def get_user_name(user_name, session: Session):
+    """
+    Получение пользователя по email
+    :param user_name: email
+    """
     user = session.query(User).filter(User.email == user_name).all()
     if not user:
         raise HttpError(404, message='user is not found')
     return user
 
 def validate(json_data, model_class: Type[CreateAds] | Type[PatchAds]):
+    """
+    Валидация создания/редактирования объявления
+    :param json_data: запрос пришедший от пользователя
+    """
     try:
         model_item = model_class(**json_data)
         return model_item.dict(exclude_none=True)
@@ -46,6 +68,10 @@ def validate(json_data, model_class: Type[CreateAds] | Type[PatchAds]):
         raise HttpError(400, err.errors())
 
 def validate_user(json_data, model_class: Type[CreateUser] | Type[PatchUser]):
+    """
+    Валидация создания/редактирования пользователя
+    :param json_data: запрос пришедший от пользователя
+    """
     try:
         model_item = model_class(**json_data)
         return model_item.dict(exclude_none=True)
@@ -69,6 +95,9 @@ def get_permission(json_data):
         return json_data
 
 class AdsView(MethodView):
+    """
+    Класс для CRUD с моделью AdsTable
+    """
 
     def get(self, ads_id):
         with Session() as session:
@@ -102,7 +131,7 @@ class AdsView(MethodView):
         with Session() as session:
             ads = get_ads(ads_id, session)
             if not(json_data['username'] == ads.username):
-                return jsonify('Wrong user')
+                raise HttpError(401, message='Wrong user')
             for field, value in json_data.items():
                 setattr(ads, field, value)
             session.commit()
@@ -120,7 +149,7 @@ class AdsView(MethodView):
         with Session() as session:
             ads = get_ads(ads_id, session)
             if not(json_data['username'] == ads.username):
-                return jsonify('Wrong user')
+                raise HttpError(401, message='Wrong user')
             session.delete(ads)
             session.commit()
             return jsonify({'status': 'delete ok'})

@@ -13,3 +13,5 @@
 
 Файл schema.py, а так же функции validate и validate_user в server.py
 
+## Примеры запросов
+Примеры запрос в файле requests-examples.http
